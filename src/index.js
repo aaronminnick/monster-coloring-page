@@ -2,7 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App.js';
+import { configureStore } from '@reduxjs/toolkit';
+import partsReducer from './src/slices/partsSlice.js';
 import reportWebVitals from './reportWebVitals';
+
+const store = configureStore({
+  reducer: {
+    parts: partsReducer
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
