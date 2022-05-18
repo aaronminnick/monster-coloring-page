@@ -6,3 +6,4 @@
     * will likely need a React component for each part with an onClick which should display the menu for that part. 
     * Buttons in the menu will depend on the part. So the React component will need to know what type of part it is, either by a propertie of the part in store, or some analysis of the svg file (maybe as part of name convention?)
 * parts may need to understand their relationship to other parts for purposes of positioning. For example, horns or ears need to know the dimensions of the head to be placed correctly
+* Is it better to have all part svgs be wrapped into a single svg file which occupies the whole space of the coloring page, or to have them be separate svg images with position controlled by their parent html elements?
