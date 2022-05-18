@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App.js';
 import { configureStore } from '@reduxjs/toolkit';
-import partsReducer from './src/slices/partsSlice.js';
+import partsReducer from './slices/partsSlice.js';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
@@ -13,6 +13,7 @@ const store = configureStore({
   }
 });
 
+//deprecated warning in devtools - suggests to update to createRoot for React 18
 ReactDOM.render(
   <Provider store={store}>
     <App />
