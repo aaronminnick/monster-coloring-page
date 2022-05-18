@@ -7,14 +7,9 @@ function interpolateSvg(action) {
   return ``; 
 }
 
-//compose overall svg file for whole coloring page by looping through all parts in state and injecting their svg
-function composePageSvg(state) {
-  return ``;
-}
-
 const partsSlice = createSlice({
   name: 'parts',
-  initialState: {
+  initialState: { //how does this work when combining reducers
     parts: []
     //pageSvg: the combined svg file will go here as plaintext, so I can access it in my coloringpage component
   },

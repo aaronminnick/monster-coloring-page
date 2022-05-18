@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App.js';
 import { configureStore } from '@reduxjs/toolkit';
+import pageReducer from './slices/pageSlice.js';
 import partsReducer from './slices/partsSlice.js';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
 const store = configureStore({
   reducer: {
+    page: pageReducer,
     parts: partsReducer
   }
 });
