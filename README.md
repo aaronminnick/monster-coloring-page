@@ -1,9 +1,7 @@
 ### TODO:
-* figure out how I am going to manipulate properties of the svg file for each part, such as position, rotation, scale
-* do I store all svgs individually in a directory, or should I have these be a single dictionary file or similar?
-* once property manipulation is figured out, need to link these all to actions to manipulate the same
-    * I may be able to store a copy of the svg in each part in store, then use regex to update values as they are manipulated by actions
-    * will likely need a React component for each part with an onClick which should display the menu for that part. 
-    * Buttons in the menu will depend on the part. So the React component will need to know what type of part it is, either by a propertie of the part in store, or some analysis of the svg file (maybe as part of name convention?)
+* Create a file for holding the string constants of template SVG files - these should be part of payload for action adding new part to state
+* will likely need a React component for each part with an onClick which should display the menu for that part. But if the svg instructions are stored in state, how do I determine clickbox? does the part need a corresponding html div matched to dimensions of part, or is the img tag sufficient to detect clicks? How about for overlap / clicking through transparent portions of an image?
+  * Buttons in the edit menu will depend on the part. So the React component will need to know what type of part it is, either by a property of the part in store, or some other scheme.
 * parts may need to understand their relationship to other parts for purposes of positioning. For example, horns or ears need to know the dimensions of the head to be placed correctly
-* Is it better to have all part svgs be wrapped into a single svg file which occupies the whole space of the coloring page, or to have them be separate svg images with position controlled by their parent html elements?
+* Need to think about use cases for the combined svg file (pageSVG) beyond export/printing
+* __Need to read about how reducers work to modify state.__ Can I add a part to state and then immediately modify it (interpolate svg and assign to svg parameter) in the same call, or do I need to make a subsequent call to the reducer? If I point the action at a separate action with the sole responsibility of interpolating the svg, does the same concern apply?

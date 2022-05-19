@@ -3,23 +3,32 @@ import { createSlice } from '@reduxjs/toolkit';
 //is this proper place for functions using toolkit?
 
 //compose svg for a part using string interpolation for parameters (scale, rotation, etc)
-function interpolateSvg(action) {
-  return ``; 
+
+//can I add something to state and then immediately modify it? Or does that take a subsequent call to the reducer?
+function interpolateSvg(part) {
+  let template = part.template;
+  Object.keys(part).filter(k => k != 'template') // need better filter
+    .forEach((k) => {
+      template = template.replace(`{{${k}}}`, `${part[k]}`);
+    });
+  return template; 
 }
 
 const partsSlice = createSlice({
   name: 'parts',
   initialState: { //how does this work when combining reducers
     parts: []
-    //pageSvg: the combined svg file will go here as plaintext, so I can access it in my coloringpage component
   },
   reducers: {
     addPart(state, action) {
       state.parts.push({
-        // properties of the part here, from action payload
         id: action.payload.id,
-
-        // construct svg text string here using string interpolation?
+        rotation: 0, //better to grab these values from action, or metadata of svg templates?
+        scale: 1.0,
+        translateX: 0,
+        translateY: 0,
+        template: null, //this should point to svg template file
+        // construct svg text string here using string interpolation or do I need do it on a subsequent call?
         svg: interpolateSvg(action)
       });
     },
@@ -29,6 +38,9 @@ const partsSlice = createSlice({
     },
     scalePart(state, action) {
       //scale part
+    },
+    translatePart(state, action) {
+      //translate part
     }
   }
 });

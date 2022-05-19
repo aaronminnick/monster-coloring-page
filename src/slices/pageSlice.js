@@ -9,10 +9,12 @@ function composePageSvg(state) {
 
 const pageSlice = createSlice({
   name: 'page',
-  initialState : {}, // how does this work when combining reducers?
-  reducers : {
+  initialState : { // how does this work when combining reducers?
+    pageSvg: '' //the combined svg file will go here as plaintext, so I can access it in my coloringpage component
+  }, 
+  reducers: {
     compose(state, action) {
-      composePageSvg(state); // ????
+      composePageSvg(state); // should I just put the function here?
     }
   }
 });
