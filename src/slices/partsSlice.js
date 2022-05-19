@@ -23,24 +23,32 @@ const partsSlice = createSlice({
     addPart(state, action) {
       state.parts.push({
         id: action.payload.id,
-        rotation: 0, //better to grab these values from action, or metadata of svg templates?
+        rotation: 0, //better to grab default values from action, or metadata of svg templates?
         scale: 1.0,
         translateX: 0,
         translateY: 0,
         template: null, //this should point to svg template file
-        // construct svg text string here using string interpolation or do I need do it on a subsequent call?
-        svg: interpolateSvg(action)
       });
+      // interpolate svg here or do I need do it on a subsequent call?
+      let part = state.parts.find(p => p.id == action.payload.id);
+      part.svg = interpolateSvg(part);
     },
     rotatePart(state, action) {
-      //rotate part
-      //do I use filter by ID to find correct part in state?
+      let part = state.parts.find(p => p.id == action.payload.id);
+      part.rotation = action.payload.rotation;
+      // part.svg = interpolateSvg(part);
     },
     scalePart(state, action) {
-      //scale part
+      let part = state.parts.find(p => p.id == action.payload.id);
+      part.scale = action.payload.scale;
+      // part.svg = interpolateSvg(part);
     },
     translatePart(state, action) {
-      //translate part
+      let part = state.parts.find(p => p.id == action.payload.id);
+      //these may be better manipluated by simple ++ / -- on parameter
+      part.translateX = action.payload.translateX; 
+      part.translateY = action.payload.translateY;
+      // part.svg = interpolateSvg(part);
     }
   }
 });
